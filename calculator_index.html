@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!---->
+  <!--Where do links go?-->
+  <!--i am not sure where the link goes-->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"
+    href="C:\Users\TAM_1\desktop\Parent_Directory\Coding\Web_DEV\WEB_DEV_PROJECTS\calculatorApp\calc_styling.css">
+
+  <title>simple calculator app</title>
+</head>
+
+<body>
+  <div class="cal-display">display here</div>
+
+
+  <div class="calc-container">
+    <div class="num-container">
+      <button class="btn-style"> 1 </button>
+      <button class="btn-style"> 2 </button>
+      <button class="btn-style"> 3 </button>
+      <button class="btn-style"> 4 </button>
+      <button class="btn-style"> 5 </button>
+      <button class="btn-style"> 6 </button>
+      <button class="btn-style"> 7 </button>
+      <button class="btn-style"> 8 </button>
+      <button class="btn-style"> 9 </button>
+      <button class="btn-style"> 0 </button>
+
+      <button class="sym-style"> + </button>
+      <button class="sym-style"> - </button>
+      <button class="sym-style"> / </button>
+      <button class="sym-style"> * </button>
+      <button class="sym-style" id="qlPrtn"> = </button>
+      <button class="sym-style"> clear</button>
+      <button class="sym-style">backspace</button>
+    </div>
+  </div>
+
+  <script
+    src="file:///C:/Users/TAM_1/Desktop/Parent_Directory/Coding/Web_DEV/WEB_DEV_PROJECTS/calculatorApp/scripts/calculator_js.js"></script>
+
+</body>
+
+
+<script>
+
+  //clicking the buttons 
+  const calcBtns = document.querySelector(".btn-container");
+  const display = document.querySelector(".cal-display");
+  const numBtn = document.querySelectorAll(".btn-style");
+
+  let calcArr = [];
+  let iterator = 0;
+
+  calcBtns.addEventListener('click', function (event) {
+    if (event.button === "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "+" | "-" | "*" | "/" | "=") {
+      iterator++;
+      calcArr[iterator] = event.target.innerText;
+      display.innerText = calcArr[iterator];
+      event.stopPropagation();
+    }
+  }
+  );
+  numBtn.addEventListener('click', function (event) {
+    if (event.button === "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9") {
+      numBtn.forEach(function (btn) {
+        console.log(numBtn[btn]);
+      });
+    }
+  }
+  );
+
+</script>
+
+
+</html>
