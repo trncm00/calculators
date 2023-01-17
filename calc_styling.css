@@ -1,11 +1,46 @@
-div {
-  display: flex;
-}
-
 ul {
 
   list-style-type: none;
 }
 
-div,
-p {}
+.ClcGrid {
+  background-color: brown;
+  width: 60%;
+  height: 75%;
+  display: grid;
+  grid-template-columns: [col-0] 25% [col-1] 25%[col-2] 25%[col-3] 25% [col-4] 25%;
+  grid-template-rows: [row-0] 25% [row-1] 25% [row-2] 25% [row-3] 25% [row-4] 25%;
+
+}
+
+.ClcLn1 {
+  background-color: aqua;
+  grid-column-start: [col-0];
+  grid-column-end: [col-1];
+  grid-row-start: [row-0];
+  grid-row-end: [row-1];
+}
+
+.ClcLn2 {
+  background-color: rgb(208, 255, 0);
+  grid-column-start: [col-1];
+  grid-column-end: [col-2];
+  grid-row-start: [row-1];
+  grid-row-end: [row-2];
+}
+
+.ClcLn3 {
+  background-color: green;
+  grid-column-start: [col-2];
+  grid-column-end: [col-3];
+  grid-row-start: [row-2];
+  grid-row-end: [row-3];
+}
+
+.ClcLn4 {
+  background-color: orangered;
+  grid-column-start: [col-3];
+  grid-column-end: [col-4];
+  grid-row-start: [row-3];
+  grid-row-end: [row-4];
+}
