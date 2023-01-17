@@ -3,10 +3,12 @@ ul {
   list-style-type: none;
 }
 
+body {
+  height: 100%;
+}
+
 .ClcGrid {
   background-color: brown;
-  width: 50%;
-  height: 75%;
   display: grid;
   grid-template-columns: [col-0] 1fr [col-1] 1fr[col-2] 1fr[col-3] 1fr;
   grid-template-rows: [row-0] 1fr [row-1] 1fr [row-2] 1fr [row-3] 1fr;
@@ -16,7 +18,7 @@ ul {
 
 .ClcLn1 {
   background-color: aqua;
-  grid-column-start: auto;
+  grid-column-start: [col-0];
   grid-column-end: auto;
   grid-row-start: auto;
   grid-row-end: auto;
@@ -52,6 +54,10 @@ ul {
   grid-column-end: auto;
   grid-row-start: auto;
   grid-row-end: auto;
+}
+
+button {
+  display: flex;
 }
 
 /* 
