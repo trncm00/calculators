@@ -1,41 +1,11 @@
-* {
-  box-sizing: border-box;
-}
-
-div.calc-container {
+div {
   display: flex;
-  align-content: center;
-  justify-content: center;
-  max-width: 50%;
-}
-div.cal_display {
-  display: inline-block;
-  background-color: black;
-  color: white;
 }
 
-/*
-div.btn-container {
-  max-width: 50%;
-  max-height: 50%;
-  display: flex;
-  background-color: goldenrod;
-}
-*/
+ul {
 
-div.num-container {
-  background: lightseagreen;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  list-style-type: none;
 }
 
-div.sym-style {
-  /*display: flex;*/
-  background: lightpink;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-button.btn-style {
-  padding: 35px 35px;
-  margin: 5px;
-}
+div,
+p {}
