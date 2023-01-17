@@ -5,22 +5,56 @@ ul {
 
 .ClcGrid {
   background-color: brown;
-  width: 60%;
+  width: 50%;
   height: 75%;
   display: grid;
-  grid-template-columns: [col-0] 25% [col-1] 25%[col-2] 25%[col-3] 25% [col-4] 25%;
-  grid-template-rows: [row-0] 25% [row-1] 25% [row-2] 25% [row-3] 25% [row-4] 25%;
+  grid-template-columns: [col-0] 1fr [col-1] 1fr[col-2] 1fr[col-3] 1fr;
+  grid-template-rows: [row-0] 1fr [row-1] 1fr [row-2] 1fr [row-3] 1fr;
 
 }
+
 
 .ClcLn1 {
   background-color: aqua;
-  grid-column-start: [col-0];
-  grid-column-end: [col-1];
-  grid-row-start: [row-0];
-  grid-row-end: [row-1];
+  grid-column-start: auto;
+  grid-column-end: auto;
+  grid-row-start: auto;
+  grid-row-end: auto;
 }
 
+.ClcLn2 {
+  background-color: yellow;
+  grid-column-start: auto;
+  grid-column-end: auto;
+  grid-row-start: auto;
+  grid-row-end: auto;
+}
+
+.ClcLn3 {
+  background-color: red;
+  grid-column-start: auto;
+  grid-column-end: auto;
+  grid-row-start: auto;
+  grid-row-end: auto;
+}
+
+.ClcLn4 {
+  background-color: green;
+  grid-column-start: auto;
+  grid-column-end: auto;
+  grid-row-start: auto;
+  grid-row-end: auto;
+}
+
+.ClcLn4 {
+  background-color: pink;
+  grid-column-start: auto;
+  grid-column-end: auto;
+  grid-row-start: auto;
+  grid-row-end: auto;
+}
+
+/* 
 .ClcLn2 {
   background-color: rgb(208, 255, 0);
   grid-column-start: [col-1];
@@ -43,4 +77,4 @@ ul {
   grid-column-end: [col-4];
   grid-row-start: [row-3];
   grid-row-end: [row-4];
-}
+} */
