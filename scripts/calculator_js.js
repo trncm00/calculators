@@ -2,10 +2,23 @@
 // console.log(buttons[0].firstChild)
 
 
-let buttons = document.querySelectorAll('click',"button");
-addEventListener(buttons,()=>{
-    console.log('hey addEventListener')
-})
+let buttons = document.querySelectorAll("button");
+// addEventListener(buttons,()=>{
+//     console.log('hey addEventListener')
+// })
+console.log(buttons.length)
+
+// buttons.forEach(button =>  addEventListener("click",(clcButton) => {console.log(`The ${button} button was clicked`)}))
+
+
+// for(let button in buttons){
+//     console.log(buttons[button].firstChild)
+//     clcButton =buttons[button].className
+//     addEventListener("click",(clcButton) => {console.log(`The ${button} button was clicked`)})
+//     }
+
+// console.log(buttons[0].firstChild.data)
+
 
 // I would rather not have to add classes to html,
 //i would rather just use js to grab the buttons tags
@@ -21,6 +34,8 @@ addEventListener(buttons,()=>{
 //This statement returns an array
 //it also returns the array length, after the nth element
 //is logged ?????
+
+
 /*
 let buttons=document.getElementsByTagName("button");
 for(let button in buttons){
