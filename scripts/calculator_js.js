@@ -1,10 +1,11 @@
-let buttons = document.getElementsByClassName("ClcGrid");
-console.log(buttons[0].firstChild)
+// let buttons = document.getElementsByClassName("ClcGrid");
+// console.log(buttons[0].firstChild)
 
 
-
-
-
+let buttons = document.querySelectorAll('click',"button");
+addEventListener(buttons,()=>{
+    console.log('hey addEventListener')
+})
 
 // I would rather not have to add classes to html,
 //i would rather just use js to grab the buttons tags
