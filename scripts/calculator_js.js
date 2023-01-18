@@ -6,16 +6,15 @@ let buttons = document.querySelectorAll("button");
 // addEventListener(buttons,()=>{
 //     console.log('hey addEventListener')
 // })
-console.log(buttons.length)
+console.log(buttons)
+buttons.forEach(button => console.log(button))
 
-// buttons.forEach(button =>  addEventListener("click",(clcButton) => {console.log(`The ${button} button was clicked`)}))
 
-
-// for(let button in buttons){
-//     console.log(buttons[button].firstChild)
-//     clcButton =buttons[button].className
-//     addEventListener("click",(clcButton) => {console.log(`The ${button} button was clicked`)})
-//     }
+for(let button in buttons){
+    console.log(buttons[button].firstChild)
+    clcButton =buttons[button].className
+    addEventListener("click",(clcButton) => {console.log(`The ${button} button was clicked`)})
+    }
 
 // console.log(buttons[0].firstChild.data)
 
@@ -34,8 +33,6 @@ console.log(buttons.length)
 //This statement returns an array
 //it also returns the array length, after the nth element
 //is logged ?????
-
-
 /*
 let buttons=document.getElementsByTagName("button");
 for(let button in buttons){
