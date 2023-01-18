@@ -1,5 +1,8 @@
-let buttons = document.getElementsByClassName("numberList");
-console.log(buttons)
+let buttons = document.getElementsByClassName("ClcGrid");
+console.log(buttons[0].firstChild)
+
+
+
 
 
 

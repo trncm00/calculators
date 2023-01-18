@@ -23,13 +23,13 @@ ul {
 
 .ClcLn1 {
   background-color: aqua;
-  grid-column-start: [col-0];
+  grid-column-start: auto;
   grid-column-end: auto;
   grid-row-start: auto;
   grid-row-end: auto;
 }
 
-.ClcLn2 {
+/* .ClcLn2 {
   background-color: yellow;
   grid-column-start: auto;
   grid-column-end: auto;
@@ -59,7 +59,7 @@ ul {
   grid-column-end: auto;
   grid-row-start: auto;
   grid-row-end: auto;
-}
+} */
 
 div button {
   background-color: papayawhip;
