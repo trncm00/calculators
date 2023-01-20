@@ -8,13 +8,38 @@ let buttons = document.querySelectorAll("button");
 //     console.log('hey addEventListener')
 // })
 console.log(buttons);
-btnArr = new Array();
-buttons.forEach((button) =>
+let btnArr = new Array();
+let button = buttons.forEach((button) =>
   button.addEventListener("click", () => {
-    console.log(`You clicked: ${button.value}`);
-    document.body.firstElementChild.innerText = button.value;
+    console.log(`You clicked: ${button.textContent}`);
+    document.body.firstElementChild.innerText = button.textContent;
+    btnArr.push(button.innerText);
   })
 );
+
+let nmArr = new Array();
+btnArr.forEach((inputVal) => {
+  console.log(inputVal);
+});
+
+/*
+let btnArr = new Array();
+let button = buttons.forEach((button) =>
+  button.addEventListener("click", () => {
+    console.log(`You clicked: ${button.textContent}`);
+    document.body.firstElementChild.innerText = button.textContent;
+    btnArr.push(button.innerText);
+    btnArr.forEach((inputVal) => {
+      console.log(inputVal);
+    });
+  })
+);
+*/
+//   if (
+//     (inputVal != "add") | "subtract" | "multiply" | "divide"
+//       ? nmArr.push(inputVal)
+//       : console.log(inputVal)
+//   );
 
 // addEventListener("click", (button) => {
 //   console.log(`The ${button.view} button was clicked.`);
