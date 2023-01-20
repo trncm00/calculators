@@ -9,7 +9,11 @@ ul {
   list-style-type: none;
 }
 
-
+.ClcDisplay{
+  display:block;
+  max-width:50%;
+  background-color:red;
+}
 
 .ClcGrid {
   background-color: brown;

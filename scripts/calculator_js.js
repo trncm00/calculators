@@ -1,3 +1,5 @@
+let displayEl = document.getElementsByClassName("ClcDisplay");
+
 // let buttons = document.getElementsByClassName("ClcGrid");
 // console.log(buttons[0].firstChild)
 
@@ -10,6 +12,7 @@ btnArr = new Array();
 buttons.forEach((button) =>
   button.addEventListener("click", () => {
     console.log(`You clicked: ${button.value}`);
+    document.body.firstElementChild.innerText = button.value;
   })
 );
 
