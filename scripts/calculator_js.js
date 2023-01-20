@@ -1,29 +1,35 @@
 // let buttons = document.getElementsByClassName("ClcGrid");
 // console.log(buttons[0].firstChild)
 
-
 let buttons = document.querySelectorAll("button");
 // addEventListener(buttons,()=>{
 //     console.log('hey addEventListener')
 // })
-console.log(buttons)
-buttons.forEach(button => console.log(button))
+console.log(buttons);
+btnArr = new Array();
+buttons.forEach((button) =>
+  button.addEventListener("click", () => {
+    console.log(`You clicked: ${button.value}`);
+  })
+);
 
+// addEventListener("click", (button) => {
+//   console.log(`The ${button.view} button was clicked.`);
+// });
 
-for(let button in buttons){
-    console.log(buttons[button].firstChild)
-    clcButton =buttons[button].className
-    addEventListener("click",(clcButton) => {console.log(`The ${button} button was clicked`)})
-    }
+// for(let button in buttons){
+//     console.log(buttons[button].firstChild)
+//     clcButton =buttons[button].className
+//     addEventListener("click",(clcButton) => {console.log(`The ${button} button was clicked`)})
+//     }
 
 // console.log(buttons[0].firstChild.data)
-
 
 // I would rather not have to add classes to html,
 //i would rather just use js to grab the buttons tags
 //and act on them, it is just too tricky.
 
-//maybe i can use this for an array later, this 
+//maybe i can use this for an array later, this
 //not working with addElementById
 
 // this expression puts an array like into a value
@@ -40,9 +46,8 @@ for(let button in buttons){
 };
 */
 
-
 //This block makes an array and uses for in to push elements into array
-//use this to make event listeners 
+//use this to make event listeners
 /*let btnArr = Array();
 for(let button in buttons){
 btnArr.push(button)
