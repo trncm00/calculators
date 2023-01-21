@@ -9,6 +9,8 @@ let buttons = document.querySelectorAll("button");
 // })
 console.log(buttons);
 
+let number = 0;
+let clcOperator = new String();
 let nmArr = new Array();
 let dsArr = new Array(); //when this moved into the button event listener
 //it loses the join effect, can that be circumvented? Maybe this is cleaner?
@@ -18,9 +20,30 @@ let ClcDisplay = buttons.forEach((button) =>
     dsArr.push(button.textContent);
     document.body.firstElementChild.innerText = dsArr.join("");
     //everything above here is perfect
+    //-----------------do not code above here----------------------------------------------------//
+
+    //this logic non-numbers from the array
+    //and then joins
     if (!isNaN(button.textContent)) {
       nmArr.push(button.textContent);
       //   parseInt(nmArr.join(""));
+    } else {
+      //in the case where the number is a symbol
+      clcOperator = button.textContent; //the Symbol is captured,
+      //make a function which takes the opSymbol
+      //and chooses a math function to do depending on the symbol
+
+      number = parseInt(nmArr.join(""));
+      dsEraser(); //dsArr is empty now, but the display has not been erased
+      ///make the below code a seperate functions which
+      opFunc(number);
+      //puts joined numbers into a operations array,
+
+      //empties the number array
+
+      nmArr = [];
+      nmArr.push(number);
+      console.log(`This is in ${nmArr} `);
     }
 
     // if(){}
@@ -47,12 +70,18 @@ let ClcDisplay = buttons.forEach((button) =>
 //   dsplArr.forEach();
 //   console.log("equals event detected!");
 // }
-//this erases the entire element
-function dsplArrEraser() {
+
+//basic functionality
+
+//this erases the entire element,upon the next button click
+//filling it with new value
+function dsEraser() {
   dsArr = [];
-  document.body.firstElementChild.innerText = " ";
+  //   document.body.firstElementChild.innerText = "";
   console.log(dsArr);
 }
+
+//ez operation functions
 function SetAdd(a, b) {
   let c = 0;
   c = a + b;
