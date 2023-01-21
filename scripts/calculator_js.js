@@ -9,15 +9,50 @@ let buttons = document.querySelectorAll("button");
 // })
 console.log(buttons);
 
-let btnArr = new Array();
-let button = buttons.forEach((button) =>
+let nmArr = new Array();
+let dsArr = new Array(); //when this moved into the button event listener
+//it loses the join effect, can that be circumvented? Maybe this is cleaner?
+let ClcDisplay = buttons.forEach((button) =>
   button.addEventListener("click", () => {
     console.log(`You clicked: ${button.textContent}`);
-    document.body.firstElementChild.innerText = button.textContent;
-    btnArr.push(button.innerText);
+    dsArr.push(button.textContent);
+    document.body.firstElementChild.innerText = dsArr.join("");
+    //everything above here is perfect
+    if (!isNaN(button.textContent)) {
+      nmArr.push(button.textContent);
+      //   parseInt(nmArr.join(""));
+    }
+
+    // if(){}
+    // if (
+    //   (button.textContent != "+") |
+    //   (button.textContent != "-") |
+    //   (button.textContent != "*") |
+    //   (button.textContent != "/ ") |
+    //   (button.textContent != "&lt")
+    // ) {
+    //   nmArr.push(button.textContent);
+    // }
   })
 );
 
+// typeof isNaN(Number(dsplArr[0]));
+
+//logic for detecting the equals ,
+//isNaN()
+// if (button.innerText != "=") {
+//   dsplArr.push(button.textContent);
+// }
+// if (button.innerText === "=") {
+//   dsplArr.forEach();
+//   console.log("equals event detected!");
+// }
+//this erases the entire element
+function dsplArrEraser() {
+  dsArr = [];
+  document.body.firstElementChild.innerText = " ";
+  console.log(dsArr);
+}
 function SetAdd(a, b) {
   let c = 0;
   c = a + b;
@@ -54,25 +89,25 @@ function SetDiv(a, b) {
 //     ? nmArr.push(inputVal)
 //     : "error";
 
-//   btnArr.map((inputVal) => {
+//   dsplArr.map((inputVal) => {
 //       if (inputVal != "add" ? nmArr.push(inputVal) : nmArr.push("no value"));
 //     });
 
 // );
 
 // let nmArr = new Array();
-// btnArr.forEach((inputVal) => {
+// dsplArr.forEach((inputVal) => {
 //   console.log(inputVal);
 // });
 
 /*
-let btnArr = new Array();
+let dsplArr = new Array();
 let button = buttons.forEach((button) =>
   button.addEventListener("click", () => {
     console.log(`You clicked: ${button.textContent}`);
     document.body.firstElementChild.innerText = button.textContent;
-    btnArr.push(button.innerText);
-    btnArr.forEach((inputVal) => {
+    dsplArr.push(button.innerText);
+    dsplArr.forEach((inputVal) => {
       console.log(inputVal);
     });
   })
@@ -119,8 +154,8 @@ for(let button in buttons){
 
 //This block makes an array and uses for in to push elements into array
 //use this to make event listeners
-/*let btnArr = Array();
+/*let dsplArr = Array();
 for(let button in buttons){
-btnArr.push(button)
+dsplArr.push(button)
 };
 */
