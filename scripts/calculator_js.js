@@ -9,8 +9,10 @@ let buttons = document.querySelectorAll("button");
 // })
 console.log(buttons);
 
-let number = 0;
+let number = new Number();
 let clcOperator = new String();
+
+let opArr = new Array();
 let nmArr = new Array();
 let dsArr = new Array(); //when this moved into the button event listener
 //it loses the join effect, can that be circumvented? Maybe this is cleaner?
@@ -27,23 +29,16 @@ let ClcDisplay = buttons.forEach((button) =>
     if (!isNaN(button.textContent)) {
       nmArr.push(button.textContent);
       //   parseInt(nmArr.join(""));
+    } else if (button.textContent === "=") {
     } else {
       //in the case where the number is a symbol
       clcOperator = button.textContent; //the Symbol is captured,
       //make a function which takes the opSymbol
       //and chooses a math function to do depending on the symbol
 
-      number = parseInt(nmArr.join(""));
+      number = parseInt(nmArr.join("")); //a joined integer
       dsEraser(); //dsArr is empty now, but the display has not been erased
-      ///make the below code a seperate functions which
-      opFunc(number);
-      //puts joined numbers into a operations array,
-
-      //empties the number array
-
-      nmArr = [];
-      nmArr.push(number);
-      console.log(`This is in ${nmArr} `);
+      operationsArrFunc(number, clcOperator); //nmArr, dsArr are empty now, opArr has a new joined number
     }
 
     // if(){}
@@ -73,6 +68,26 @@ let ClcDisplay = buttons.forEach((button) =>
 
 //basic functionality
 
+function operationsArrFunc(paramNum, paramSym) {
+  opArr.push(paramNum);
+  opArr.push(paramSym);
+  nmEraser();
+  console.log(
+    `This is in ${opArr} after OpFunc, this is in ${nmArr} after OpFunc `
+  );
+}
+
+function operationsCalcFunc() {
+  while (opArr.length() != 0) {
+    let i = opArr.shift();
+    if (opArr[0] === "+") {
+      let j = opArr[1];
+      let ass = SetAdd(i, j);
+      console.log(ass);
+    }
+  }
+}
+
 //this erases the entire element,upon the next button click
 //filling it with new value
 function dsEraser() {
@@ -81,10 +96,17 @@ function dsEraser() {
   console.log(dsArr);
 }
 
+function nmEraser() {
+  nmArr = [];
+  //   document.body.firstElementChild.innerText = "";
+  console.log(nmArr);
+}
+
 //ez operation functions
 function SetAdd(a, b) {
   let c = 0;
   c = a + b;
+  console.log(c);
   return c;
 }
 function SetSub(a, b) {
