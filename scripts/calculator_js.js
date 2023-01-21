@@ -8,6 +8,7 @@ let buttons = document.querySelectorAll("button");
 //     console.log('hey addEventListener')
 // })
 console.log(buttons);
+
 let btnArr = new Array();
 let button = buttons.forEach((button) =>
   button.addEventListener("click", () => {
@@ -17,10 +18,52 @@ let button = buttons.forEach((button) =>
   })
 );
 
-let nmArr = new Array();
-btnArr.forEach((inputVal) => {
-  console.log(inputVal);
-});
+function SetAdd(a, b) {
+  let c = 0;
+  c = a + b;
+  return c;
+}
+function SetSub(a, b) {
+  let c = 0;
+  c = a - b;
+  return c;
+}
+function SetMult(a, b) {
+  let c = 0;
+  c = a * b;
+  return c;
+}
+
+function SetDiv(a, b) {
+  let c = 0;
+  c = a / b;
+  return c;
+}
+// const thing =
+//   inputVal != "add"
+//     ? nmArr.push(inputVal)
+//     : inputVal != "subtract"
+//     ? nmArr.push(inputVal)
+//     : inputVal != "multiply"
+//     ? nmArr.push(inputVal)
+//     : inputVal != "divide"
+//     ? nmArr.push(inputVal)
+//     : inputVal != "back"
+//     ? nmArr.push(inputVal)
+//     : inputVal != "equals "
+//     ? nmArr.push(inputVal)
+//     : "error";
+
+//   btnArr.map((inputVal) => {
+//       if (inputVal != "add" ? nmArr.push(inputVal) : nmArr.push("no value"));
+//     });
+
+// );
+
+// let nmArr = new Array();
+// btnArr.forEach((inputVal) => {
+//   console.log(inputVal);
+// });
 
 /*
 let btnArr = new Array();
