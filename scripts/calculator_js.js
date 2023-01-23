@@ -3,54 +3,41 @@ let displayEl = document.getElementsByClassName("ClcDisplay");
 // let buttons = document.getElementsByClassName("ClcGrid");
 // console.log(buttons[0].firstChild)
 
-let buttons = document.querySelectorAll("button");
-// addEventListener(buttons,()=>{
-//     console.log('hey addEventListener')
-// })
-console.log(buttons);
-
 let number = new Number();
 let clcOperator = new String();
 
-let opArr = new Array();
-let nmArr = new Array();
-let dsArr = new Array(); //when this moved into the button event listener
+let operatingList = new Array();
+let numberList = new Array();
+let displayList = new Array();
+//when this moved into the button event listener
 //it loses the join effect, can that be circumvented? Maybe this is cleaner?
-let ClcDisplay = buttons.forEach((button) =>
+
+let buttons = document.querySelectorAll("button");
+console.log(buttons);
+let CalculatorEffects = buttons.forEach((button) =>
   button.addEventListener("click", () => {
     console.log(`You clicked: ${button.textContent}`);
-    dsArr.push(button.textContent);
-    document.body.firstElementChild.innerText = dsArr.join("");
+    displayList.push(button.textContent);
+    document.body.firstElementChild.innerText = displayList.join("");
     //everything above here is perfect
     //-----------------do not code above here----------------------------------------------------//
 
-    //this logic non-numbers from the array
-    //and then joins
     if (!isNaN(button.textContent)) {
-      nmArr.push(button.textContent);
+      // setNumberList(button.textContent);
+      numberList.push(button.textContent);
       //   parseInt(nmArr.join(""));
     } else if (button.textContent === "=") {
+      calculatorControlFunction(operatingList);
     } else {
       //in the case where the number is a symbol
       clcOperator = button.textContent; //the Symbol is captured,
       //make a function which takes the opSymbol
       //and chooses a math function to do depending on the symbol
 
-      number = parseInt(nmArr.join("")); //a joined integer
+      number = parseInt(numberList.join("")); //a joined integer
       dsEraser(); //dsArr is empty now, but the display has not been erased
-      operationsArrFunc(number, clcOperator); //nmArr, dsArr are empty now, opArr has a new joined number
+      setOperationsList(number, clcOperator); //nmArr, dsArr are empty now, opArr has a new joined number
     }
-
-    // if(){}
-    // if (
-    //   (button.textContent != "+") |
-    //   (button.textContent != "-") |
-    //   (button.textContent != "*") |
-    //   (button.textContent != "/ ") |
-    //   (button.textContent != "&lt")
-    // ) {
-    //   nmArr.push(button.textContent);
-    // }
   })
 );
 
@@ -68,38 +55,74 @@ let ClcDisplay = buttons.forEach((button) =>
 
 //basic functionality
 
-function operationsArrFunc(paramNum, paramSym) {
-  opArr.push(paramNum);
-  opArr.push(paramSym);
+function setOperationsList(paramNum, paramSym) {
+  operatingList.push(paramNum);
+  operatingList.push(paramSym);
   nmEraser();
   console.log(
-    `This is in ${opArr} after OpFunc, this is in ${nmArr} after OpFunc `
+    `This is in ${operatingList} after OpFunc, this is in ${numberList} after OpFunc `
   );
+  return operatingList;
 }
 
-function operationsCalcFunc() {
-  while (opArr.length() != 0) {
-    let i = opArr.shift();
-    if (opArr[0] === "+") {
-      let j = opArr[1];
-      let ass = SetAdd(i, j);
-      console.log(ass);
+function calculatorControlFunction(arrPar) {
+  if (arrPar.length != 0) {
+    let firstNumber = arrPar.shift();
+    let localSymbol = arrPar.shift();
+    if (localSymbol === "+") {
+      let secondNumber = arrPar[0];
+      arrPar[0] = SetAdd(firstNumber, secondNumber);
     }
   }
 }
 
+function setNumberList() {}
+
+// function operationsCalcFunc(arrPar) {
+//   if (arrPar.length != 0) {
+//     let firstNumber = arrPar.shift;
+//     let localSymbol = arrPar.shift;
+//     if (localSymbol === "+") {
+//       let secondNumber = arrPar[0];
+//       arrPar[0] = SetAdd(firstNumber, secondNumber);
+//     }
+//   }
+// }
+
+// function operationsCalcFunc(arrPar) {
+//   if (arrPar.length != 0) {
+//     let firstNumber = arrPar.shift;
+//     let localSymbol = arrPar.shift;
+//     if (localSymbol === "+") {
+//       let secondNumber = arrPar[0];
+//       arrPar[0] = SetAdd(firstNumber, secondNumber);
+//     }
+//   }
+// }
+
+// function operationsCalcFunc() {
+//   while (opArr.length != 0) {
+//     let i = opArr.shift;
+//     if (opArr[0] === "+") {
+//       let j = opArr[1];
+//       opArr[0] = SetAdd(i, j);
+//       console.log(ass);
+//     }
+//   }
+// }
+
 //this erases the entire element,upon the next button click
 //filling it with new value
 function dsEraser() {
-  dsArr = [];
+  displayList = [];
   //   document.body.firstElementChild.innerText = "";
-  console.log(dsArr);
+  console.log(displayList);
 }
 
 function nmEraser() {
-  nmArr = [];
+  numberList = [];
   //   document.body.firstElementChild.innerText = "";
-  console.log(nmArr);
+  console.log(numberList);
 }
 
 //ez operation functions
