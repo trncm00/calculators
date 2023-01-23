@@ -24,7 +24,6 @@ let CalculatorEffects = buttons.forEach((button) =>
     } else if (button.textContent === "=") {
       displayListEraser(); //dsArr is empty now, but the display has not been erased
       calculatorControlFunction(operatingList);
-      numberListEraser();
     } else {
       //in the case where the number is a symbol
       //take the button press symbol
@@ -45,7 +44,7 @@ let CalculatorEffects = buttons.forEach((button) =>
 function setOperationsList(paramNum, paramSym) {
   operatingList.push(paramNum);
   operatingList.push(paramSym);
-  // numberListEraser(); //this erases the list before its ready to be i think
+  numberListEraser(); //this erases the list before its ready to be i think
   console.log(
     `This is in ${operatingList} after OpFunc, this is in ${numberList} after OpFunc `
   );
@@ -58,13 +57,8 @@ function calculatorControlFunction(arrPar) {
     let localSymbol = arrPar.shift();
     if (localSymbol === "+") {
       let secondNumber = arrPar[0];
-      //should this be the arrParr[0]
-      //or should it a new 0th value
-      //that gets pushed into the 0th place
-      // such that the prexisting values
-      //are shifted up the index? 
       arrPar[0] = SetAdd(firstNumber, secondNumber);
-    } else if(localSymbol === "-")
+    }
   }
 }
 
