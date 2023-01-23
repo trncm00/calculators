@@ -3,14 +3,12 @@ let displayEl = document.getElementsByClassName("ClcDisplay");
 // let buttons = document.getElementsByClassName("ClcGrid");
 // console.log(buttons[0].firstChild)
 
-let number = new Number();
-let clcOperator = new String();
+let NumberfiedString = new Number();
+let mathematicalSymbol = new String();
 
-let operatingList = new Array();
-let numberList = new Array();
 let displayList = new Array();
-//when this moved into the button event listener
-//it loses the join effect, can that be circumvented? Maybe this is cleaner?
+let numberList = new Array();
+let operatingList = new Array();
 
 let buttons = document.querySelectorAll("button");
 console.log(buttons);
@@ -19,46 +17,33 @@ let CalculatorEffects = buttons.forEach((button) =>
     console.log(`You clicked: ${button.textContent}`);
     displayList.push(button.textContent);
     document.body.firstElementChild.innerText = displayList.join("");
-    //everything above here is perfect
     //-----------------do not code above here----------------------------------------------------//
-
+    //if number, push to number list
+    //else if =, fire the calculator Control function
+    //else, not a number, save to an variable
     if (!isNaN(button.textContent)) {
-      // setNumberList(button.textContent);
       numberList.push(button.textContent);
-      //   parseInt(nmArr.join(""));
     } else if (button.textContent === "=") {
+      displayListEraser(); //dsArr is empty now, but the display has not been erased
       calculatorControlFunction(operatingList);
     } else {
       //in the case where the number is a symbol
-      clcOperator = button.textContent; //the Symbol is captured,
+      mathematicalSymbol = button.textContent; //the Symbol is captured,
       //make a function which takes the opSymbol
       //and chooses a math function to do depending on the symbol
 
-      number = parseInt(numberList.join("")); //a joined integer
-      dsEraser(); //dsArr is empty now, but the display has not been erased
-      setOperationsList(number, clcOperator); //nmArr, dsArr are empty now, opArr has a new joined number
+      NumberfiedString = parseInt(numberList.join("")); //a joined integer
+      setOperationsList(NumberfiedString, mathematicalSymbol); //nmArr, dsArr are empty now, opArr has a new joined number
     }
   })
 );
 
-// typeof isNaN(Number(dsplArr[0]));
-
-//logic for detecting the equals ,
-//isNaN()
-// if (button.innerText != "=") {
-//   dsplArr.push(button.textContent);
-// }
-// if (button.innerText === "=") {
-//   dsplArr.forEach();
-//   console.log("equals event detected!");
-// }
-
-//basic functionality
+//-----------------basic functionality---------------------//
 
 function setOperationsList(paramNum, paramSym) {
   operatingList.push(paramNum);
   operatingList.push(paramSym);
-  nmEraser();
+  numberListEraser();
   console.log(
     `This is in ${operatingList} after OpFunc, this is in ${numberList} after OpFunc `
   );
@@ -113,16 +98,20 @@ function setNumberList() {}
 
 //this erases the entire element,upon the next button click
 //filling it with new value
-function dsEraser() {
+function displayListEraser() {
   displayList = [];
   //   document.body.firstElementChild.innerText = "";
-  console.log(displayList);
+  console.log(
+    `Testing, Is display list empty? ${(displayList.length === 0) === true}`
+  );
 }
 
-function nmEraser() {
+function numberListEraser() {
   numberList = [];
   //   document.body.firstElementChild.innerText = "";
-  console.log(numberList);
+  console.log(
+    `Testing, Is display list empty? ${(numberList.length === 0) === true}`
+  );
 }
 
 //ez operation functions
