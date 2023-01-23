@@ -1,9 +1,6 @@
 let displayEl = document.getElementsByClassName("ClcDisplay");
 
-// let buttons = document.getElementsByClassName("ClcGrid");
-// console.log(buttons[0].firstChild)
-
-let NumberfiedString = new Number();
+let numberfiedString = new Number();
 let mathematicalSymbol = new String();
 
 let displayList = new Array();
@@ -22,18 +19,23 @@ let CalculatorEffects = buttons.forEach((button) =>
     //else if =, fire the calculator Control function
     //else, not a number, save to an variable
     if (!isNaN(button.textContent)) {
-      numberList.push(button.textContent);
+      setNumberList(button.textContent);
+      // numberList.push(button.textContent);
     } else if (button.textContent === "=") {
       displayListEraser(); //dsArr is empty now, but the display has not been erased
       calculatorControlFunction(operatingList);
+      numberListEraser();
     } else {
       //in the case where the number is a symbol
+      //take the button press symbol
+      //and the first/0th value of num list
+      // and shift them into the oplist
+      // claiming the global numberfied string
+      //now the number list should have a new number
+      // at 0
       mathematicalSymbol = button.textContent; //the Symbol is captured,
-      //make a function which takes the opSymbol
-      //and chooses a math function to do depending on the symbol
-
-      NumberfiedString = parseInt(numberList.join("")); //a joined integer
-      setOperationsList(NumberfiedString, mathematicalSymbol); //nmArr, dsArr are empty now, opArr has a new joined number
+      // NumberfiedString = parseInt(numberList.join("")); //a joined integer
+      setOperationsList(numberfiedString, mathematicalSymbol); //nmArr, dsArr are empty now, opArr has a new joined number
     }
   })
 );
@@ -43,7 +45,7 @@ let CalculatorEffects = buttons.forEach((button) =>
 function setOperationsList(paramNum, paramSym) {
   operatingList.push(paramNum);
   operatingList.push(paramSym);
-  numberListEraser();
+  // numberListEraser(); //this erases the list before its ready to be i think
   console.log(
     `This is in ${operatingList} after OpFunc, this is in ${numberList} after OpFunc `
   );
@@ -56,12 +58,20 @@ function calculatorControlFunction(arrPar) {
     let localSymbol = arrPar.shift();
     if (localSymbol === "+") {
       let secondNumber = arrPar[0];
+      //should this be the arrParr[0]
+      //or should it a new 0th value
+      //that gets pushed into the 0th place
+      // such that the prexisting values
+      //are shifted up the index? 
       arrPar[0] = SetAdd(firstNumber, secondNumber);
-    }
+    } else if(localSymbol === "-")
   }
 }
 
-function setNumberList() {}
+function setNumberList(param) {
+  numberList.push(param);
+  numberfiedString = parseInt(numberList.join("")); //a joined integer
+}
 
 // function operationsCalcFunc(arrPar) {
 //   if (arrPar.length != 0) {
