@@ -85,6 +85,7 @@ function calculatorControlFunction(arrPar) {
 //filling it with new value
 function displayListEraser() {
   displayList = [];
+  document.body.firstElementChild.innerText = displayList;
   //   document.body.firstElementChild.innerText = "";
   console.log(
     `Testing, Is display list empty? ${(displayList.length === 0) === true}`
@@ -103,18 +104,21 @@ function numberListEraser() {
 function SetAdd(a, b) {
   let c = 0;
   c = a + b;
+  document.body.firstElementChild.innerText = c;
   console.log(c);
   return c;
 }
 function SetSub(a, b) {
   let c = 0;
   c = a - b;
+  document.body.firstElementChild.innerText = c;
   console.log(c);
   return c;
 }
 function SetMult(a, b) {
   let c = 0;
   c = a * b;
+  document.body.firstElementChild.innerText = c;
   console.log(c);
   return c;
 }
@@ -122,6 +126,7 @@ function SetMult(a, b) {
 function SetDiv(a, b) {
   let c = 0;
   c = a / b;
+  document.body.firstElementChild.innerText = c;
   console.log(c);
   return c;
 }
