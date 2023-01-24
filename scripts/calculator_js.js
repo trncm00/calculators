@@ -11,25 +11,40 @@ let buttons = document.querySelectorAll("button");
 console.log(buttons);
 let CalculatorEffects = buttons.forEach((button) =>
   button.addEventListener("click", () => {
-    console.log(`You clicked: ${button.textContent}`);
-    displayList.push(button.textContent);
+    let buttonPressed = button.textContent;
+    console.log(`You clicked: ${buttonPressed}`);
+    displayList.push(buttonPressed);
     document.body.firstElementChild.innerText = displayList.join("");
     //-----------------do not code above here----------------------------------------------------//
 
-    if (!isNaN(button.textContent)) {
-      setNumberList(button.textContent);
-    } else if (isNaN(button.textContent) && button.textContent != "=") {
-      mathematicalSymbol = button.textContent; //the Symbol is captured,
-      setExpressionList(numberfiedString, mathematicalSymbol); //nmArr, dsArr are empty now, opArr has a new joined number
-      console.log(button.textcontent);
+    if (!isNaN(buttonPressed)) {
+      setNumberList(buttonPressed);
+      // setNumberList();
+    } else if (isNaN(buttonPressed) && buttonPressed != "=") {
+      setSymbol(buttonPressed);
+      setExpressionList(numberfiedString, mathematicalSymbol); //too early to be called
     } else {
       displayListEraser(); //dsArr is empty now, but the display has not been erased
+      setNumberList(numberList.pop());
+      expressionList.push(parseInt(numberList[0]));
       calculatorControlFunction(expressionList);
     }
   })
 );
 
 //-----------------basic functionality---------------------//
+
+function setNumberList(param) {
+  numberList.push(param);
+  numberfiedString = parseInt(numberList.join("")); //a joined integer
+  numberList[0] = numberfiedString;
+  // numberList.push(param);//setNumberList would have a param if this block was active
+  // numberfiedString = parseInt(numberList.join("")); //a joined integer
+}
+
+function setSymbol(paramSym) {
+  mathematicalSymbol = paramSym; //the Symbol is captured,
+}
 
 function setExpressionList(paramNum, paramSym) {
   expressionList.push(paramNum);
@@ -45,16 +60,13 @@ function calculatorControlFunction(arrPar) {
   if (arrPar.length != 0) {
     let firstNumber = arrPar.shift();
     let localSymbol = arrPar.shift();
+    let rlS = numberList[0];
     if (localSymbol === "+") {
-      let secondNumber = arrPar[0];
+      let secondNumber = rlS;
       arrPar[0] = SetAdd(firstNumber, secondNumber);
+      // return SetAdd(firstNumber, secondNumber);
     }
   }
-}
-
-function setNumberList(param) {
-  numberList.push(param);
-  numberfiedString = parseInt(numberList.join("")); //a joined integer
 }
 
 //this erases the entire element,upon the next button click
