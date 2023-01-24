@@ -65,6 +65,18 @@ function calculatorControlFunction(arrPar) {
       let secondNumber = rlS;
       arrPar[0] = SetAdd(firstNumber, secondNumber);
       // return SetAdd(firstNumber, secondNumber);
+    } else if (localSymbol === "-") {
+      let secondNumber = rlS;
+      arrPar[0] = SetSub(firstNumber, secondNumber);
+      // return SetAdd(firstNumber, secondNumber);
+    } else if (localSymbol === "*") {
+      let secondNumber = rlS;
+      arrPar[0] = SetMult(firstNumber, secondNumber);
+      // return SetAdd(firstNumber, secondNumber);
+    } else if (localSymbol === "/") {
+      let secondNumber = rlS;
+      arrPar[0] = SetDiv(firstNumber, secondNumber);
+      // return SetAdd(firstNumber, secondNumber);
     }
   }
 }
@@ -97,101 +109,19 @@ function SetAdd(a, b) {
 function SetSub(a, b) {
   let c = 0;
   c = a - b;
+  console.log(c);
   return c;
 }
 function SetMult(a, b) {
   let c = 0;
   c = a * b;
+  console.log(c);
   return c;
 }
 
 function SetDiv(a, b) {
   let c = 0;
   c = a / b;
+  console.log(c);
   return c;
 }
-// const thing =
-//   inputVal != "add"
-//     ? nmArr.push(inputVal)
-//     : inputVal != "subtract"
-//     ? nmArr.push(inputVal)
-//     : inputVal != "multiply"
-//     ? nmArr.push(inputVal)
-//     : inputVal != "divide"
-//     ? nmArr.push(inputVal)
-//     : inputVal != "back"
-//     ? nmArr.push(inputVal)
-//     : inputVal != "equals "
-//     ? nmArr.push(inputVal)
-//     : "error";
-
-//   dsplArr.map((inputVal) => {
-//       if (inputVal != "add" ? nmArr.push(inputVal) : nmArr.push("no value"));
-//     });
-
-// );
-
-// let nmArr = new Array();
-// dsplArr.forEach((inputVal) => {
-//   console.log(inputVal);
-// });
-
-/*
-let dsplArr = new Array();
-let button = buttons.forEach((button) =>
-  button.addEventListener("click", () => {
-    console.log(`You clicked: ${button.textContent}`);
-    document.body.firstElementChild.innerText = button.textContent;
-    dsplArr.push(button.innerText);
-    dsplArr.forEach((inputVal) => {
-      console.log(inputVal);
-    });
-  })
-);
-*/
-//   if (
-//     (inputVal != "add") | "subtract" | "multiply" | "divide"
-//       ? nmArr.push(inputVal)
-//       : console.log(inputVal)
-//   );
-
-// addEventListener("click", (button) => {
-//   console.log(`The ${button.view} button was clicked.`);
-// });
-
-// for(let button in buttons){
-//     console.log(buttons[button].firstChild)
-//     clcButton =buttons[button].className
-//     addEventListener("click",(clcButton) => {console.log(`The ${button} button was clicked`)})
-//     }
-
-// console.log(buttons[0].firstChild.data)
-
-// I would rather not have to add classes to html,
-//i would rather just use js to grab the buttons tags
-//and act on them, it is just too tricky.
-
-//maybe i can use this for an array later, this
-//not working with addElementById
-
-// this expression puts an array like into a value
-//i can't use it with addEventListeners so fuck it
-//const buttons=document.getElementsByClassName("btnEvent");
-
-//This statement returns an array
-//it also returns the array length, after the nth element
-//is logged ?????
-/*
-let buttons=document.getElementsByTagName("button");
-for(let button in buttons){
-    console.log(buttons[button])
-};
-*/
-
-//This block makes an array and uses for in to push elements into array
-//use this to make event listeners
-/*let dsplArr = Array();
-for(let button in buttons){
-dsplArr.push(button)
-};
-*/
