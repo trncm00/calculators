@@ -5,7 +5,7 @@ let mathematicalSymbol = new String();
 
 let displayList = new Array();
 let numberList = new Array();
-let operatingList = new Array();
+let expressionList = new Array();
 
 let buttons = document.querySelectorAll("button");
 console.log(buttons);
@@ -15,40 +15,30 @@ let CalculatorEffects = buttons.forEach((button) =>
     displayList.push(button.textContent);
     document.body.firstElementChild.innerText = displayList.join("");
     //-----------------do not code above here----------------------------------------------------//
-    //if number, push to number list
-    //else if =, fire the calculator Control function
-    //else, not a number, save to an variable
+
     if (!isNaN(button.textContent)) {
       setNumberList(button.textContent);
-      // numberList.push(button.textContent);
-    } else if (button.textContent === "=") {
-      displayListEraser(); //dsArr is empty now, but the display has not been erased
-      calculatorControlFunction(operatingList);
-    } else {
-      //in the case where the number is a symbol
-      //take the button press symbol
-      //and the first/0th value of num list
-      // and shift them into the oplist
-      // claiming the global numberfied string
-      //now the number list should have a new number
-      // at 0
+    } else if (isNaN(button.textContent) && button.textContent != "=") {
       mathematicalSymbol = button.textContent; //the Symbol is captured,
-      // NumberfiedString = parseInt(numberList.join("")); //a joined integer
-      setOperationsList(numberfiedString, mathematicalSymbol); //nmArr, dsArr are empty now, opArr has a new joined number
+      setExpressionList(numberfiedString, mathematicalSymbol); //nmArr, dsArr are empty now, opArr has a new joined number
+      console.log(button.textcontent);
+    } else {
+      displayListEraser(); //dsArr is empty now, but the display has not been erased
+      calculatorControlFunction(expressionList);
     }
   })
 );
 
 //-----------------basic functionality---------------------//
 
-function setOperationsList(paramNum, paramSym) {
-  operatingList.push(paramNum);
-  operatingList.push(paramSym);
+function setExpressionList(paramNum, paramSym) {
+  expressionList.push(paramNum);
+  expressionList.push(paramSym);
   numberListEraser(); //this erases the list before its ready to be i think
   console.log(
-    `This is in ${operatingList} after OpFunc, this is in ${numberList} after OpFunc `
+    `This is in ${expressionList} after OpFunc, this is in ${numberList} after OpFunc `
   );
-  return operatingList;
+  return expressionList;
 }
 
 function calculatorControlFunction(arrPar) {
@@ -66,39 +56,6 @@ function setNumberList(param) {
   numberList.push(param);
   numberfiedString = parseInt(numberList.join("")); //a joined integer
 }
-
-// function operationsCalcFunc(arrPar) {
-//   if (arrPar.length != 0) {
-//     let firstNumber = arrPar.shift;
-//     let localSymbol = arrPar.shift;
-//     if (localSymbol === "+") {
-//       let secondNumber = arrPar[0];
-//       arrPar[0] = SetAdd(firstNumber, secondNumber);
-//     }
-//   }
-// }
-
-// function operationsCalcFunc(arrPar) {
-//   if (arrPar.length != 0) {
-//     let firstNumber = arrPar.shift;
-//     let localSymbol = arrPar.shift;
-//     if (localSymbol === "+") {
-//       let secondNumber = arrPar[0];
-//       arrPar[0] = SetAdd(firstNumber, secondNumber);
-//     }
-//   }
-// }
-
-// function operationsCalcFunc() {
-//   while (opArr.length != 0) {
-//     let i = opArr.shift;
-//     if (opArr[0] === "+") {
-//       let j = opArr[1];
-//       opArr[0] = SetAdd(i, j);
-//       console.log(ass);
-//     }
-//   }
-// }
 
 //this erases the entire element,upon the next button click
 //filling it with new value
