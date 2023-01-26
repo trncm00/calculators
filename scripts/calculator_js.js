@@ -19,7 +19,6 @@ let CalculatorEffects = buttons.forEach((button) =>
 
     if (!isNaN(buttonPressed)) {
       setNumberList(buttonPressed);
-      // setNumberList();
     } else if (isNaN(buttonPressed) && buttonPressed != "=") {
       setSymbol(buttonPressed);
       prepExpression(numberfiedString, mathematicalSymbol);
@@ -28,7 +27,7 @@ let CalculatorEffects = buttons.forEach((button) =>
       displayListEraser(); //dsArr is empty now, but the display has not been erased
       setNumberList(numberList.pop());
       setExpressionList(parseInt(numberList[0])); //this is a hack
-      //to set the second value, i need a better way
+      //to set the second numerical value, i need a better way
 
       calculatorControlFunction(expressionList);
     }
