@@ -1,7 +1,8 @@
 // let displayEl = document.getElementsByClassName("ClcDisplay");
-
+let joinedString = new String();
 let numberfiedString = new Number();
 let mathematicalSymbol = new String();
+let expressionValue = new Number();
 
 let displayList = new Array();
 let numberList = new Array();
@@ -14,19 +15,19 @@ let CalculatorEffects = buttons.forEach((button) =>
     let buttonPressed = button.textContent;
     console.log(`You clicked: ${buttonPressed}`);
     setDisplayList(buttonPressed);
-    document.body.firstElementChild.innerText = displayList.join("");
+    document.body.firstElementChild.innerText = joinString(displayList);
     //--------------------------------do-not-code-above-here-----------------------------//
 
     if (!isNaN(buttonPressed)) {
-      setNumberList(buttonPressed);
+      setNumberList(buttonPressed); //isolated in num list, joined,
     } else if (isNaN(buttonPressed) && buttonPressed != "=") {
       setSymbol(buttonPressed);
-      prepExpression(numberfiedString, mathematicalSymbol);
+      // prepExpression(numberfiedString, mathematicalSymbol);
       // setExpressionList(numberfiedString, mathematicalSymbol); //too early to be called
     } else {
       displayListEraser(); //dsArr is empty now, but the display has not been erased
-      setNumberList(numberList.pop());
-      setExpressionList(parseInt(numberList[0])); //this is a hack
+      // setNumberList(numberList.pop());
+      // setExpressionList(parseString(numberList[0])); //this is a hack
       //to set the second numerical value, i need a better way
 
       calculatorControlFunction(expressionList);
@@ -39,63 +40,74 @@ function setDisplayList(parrPressed) {
   displayList.push(parrPressed);
 }
 
-function setNumberList(param) {
-  numberList.push(param);
-  joinString(numberList);
-  numberList[0] = numberfiedString;
-}
-
 function setExpressionList(paramAny) {
-  expressionList.push(paramAny);
+  expressionList.push(paramAny); //send param to expression array
   return expressionList;
 }
 
 function setSymbol(paramSym) {
   mathematicalSymbol = paramSym; //the Symbol is captured,
-}
-
-function prepExpression(parNumber, parSymbol) {
-  setExpressionList(parNumber);
-  setExpressionList(parSymbol);
-  numberListEraser(); //this erases the list before its ready to be i think
-  console.log(
-    `This is in ${expressionList} after OpFunc, this is in ${numberList} after OpFunc `
-  );
-  return expressionList;
+  setExpressionList(mathematicalSymbol);
 }
 
 function joinString(stringPar) {
-  numberfiedString = parseInt(stringPar.join("")); //a joined integer
+  return stringPar.join(""); //a joined integer
+}
+function parseString(stringPar) {
+  numberfiedString = parseInt(stringPar);
+}
+
+//complex functions
+
+function saveRestOfexpressionList(arrParr) {
+  let localArr = arrParr.slice(0, arrParr.length);
+  console.log(localArr);
+  return localArr;
+}
+
+function setNumberList(param) {
+  numberList.push(param); //send to numberList
+  joinedString = joinString(numberList); //join
+  parseString(joinedString); //numberfy
+  setExpressionList(numberfiedString);
+  numberList = [];
 }
 
 function calculatorControlFunction(arrPar) {
-  if (arrPar.length != 0) {
+  while (arrPar.length > 1) {
     let firstNumber = arrPar.shift();
     let localSymbol = arrPar.shift();
-    let rlS = numberList[0];
+    let secondNumber = arrPar.shift();
+    let localArr = saveRestOfexpressionList(arrPar);
+    // arrPar = [];
     if (localSymbol === "+") {
-      let secondNumber = rlS;
-      arrPar[0] = SetAdd(firstNumber, secondNumber);
+      expressionValue = SetAdd(firstNumber, secondNumber);
+      arrPar.unshift(expressionValue);
       // return SetAdd(firstNumber, secondNumber);
     } else if (localSymbol === "-") {
-      let secondNumber = rlS;
-      arrPar[0] = SetSub(firstNumber, secondNumber);
+      expressionValue = SetSub(firstNumber, secondNumber);
+      arrPar.unshift(expressionValue);
       // return SetAdd(firstNumber, secondNumber);
     } else if (localSymbol === "*") {
-      let secondNumber = rlS;
-      arrPar[0] = SetMult(firstNumber, secondNumber);
+      expressionValue = SetMult(firstNumber, secondNumber);
+      arrPar.unshift(expressionValue);
       // return SetAdd(firstNumber, secondNumber);
     } else if (localSymbol === "/") {
-      let secondNumber = rlS;
-      arrPar[0] = SetDiv(firstNumber, secondNumber);
+      expressionValue = SetDiv(firstNumber, secondNumber);
+      arrPar.unshift(expressionValue);
       // return SetAdd(firstNumber, secondNumber);
     }
+
+    // localArr.unshift(arrPar);
+    // arrPar.unshift(localArr);
+    // if(arrPar.length === 1){
+
+    // }
   }
+  return expressionValue;
 }
 
-//this erases the entire element,upon the next button click
-//filling it with new value
-
+//erasers
 function displayListEraser() {
   displayList = [];
   document.body.firstElementChild.innerText = displayList;
@@ -126,13 +138,16 @@ function expressionListEraser() {
 function SetAdd(a, b) {
   let c = 0;
   c = a + b;
+  expressionValue = c;
   document.body.firstElementChild.innerText = c;
   console.log(c);
+
   return c;
 }
 function SetSub(a, b) {
   let c = 0;
   c = a - b;
+  expressionValue = c;
   document.body.firstElementChild.innerText = c;
   console.log(c);
   return c;
@@ -140,6 +155,7 @@ function SetSub(a, b) {
 function SetMult(a, b) {
   let c = 0;
   c = a * b;
+  expressionValue = c;
   document.body.firstElementChild.innerText = c;
   console.log(c);
   return c;
@@ -148,6 +164,7 @@ function SetMult(a, b) {
 function SetDiv(a, b) {
   let c = 0;
   c = a / b;
+  expressionValue = c;
   document.body.firstElementChild.innerText = c;
   console.log(c);
   return c;
