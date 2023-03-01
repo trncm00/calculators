@@ -1,0 +1,217 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs40\lang9 This is the problem:3.12.2023\par
+I want to develop the backspace button\par
+I added a new logic, if button press equals <,\par
+and I made a backspace function,\par
+which pops the last index off of numberList and displayList\par
+What should I do?\par
+make two functions for backspacing in the display list and the number list\par
+display list function\par
+displayList.pop(), possibly save this as a reference\par
+then use\par
+document.body.firstElementChild.innerText = displayList.join(' ')\par
+\par
+
+\pard\ri-1440\sa200\sl276\slmult1 document.body.firstElementChild.innerText = displayList.join(" ")\par
+
+\pard\sa200\sl276\slmult1 This is the problem:\par
+\tab It pushes my number in to the list before it is ready. It is not a complete number until an operator is picked by the user. The number should get joined and get as big as it has to until that moment.\par
+When should I send the number list into the expression list. \par
+It makes sense to place it in the expression list when you activate an operator. It causes problems right now. I would think having a whole number list available as a global would make it easy. On equals sign, if number list is full,  then set expression with numberfied list.\par
+\par
+So sending the joined integer to the setNumberList function is probably meant to be in the operator area, in one of the associated functions or just loose, under the if else statement\par
+When I do that it creates a new problem, in fact, this was a problem I had before:\par
+When I key in the right number it depends on a key press, and it does not add the integer into the expression list\par
+\par
+////////\par
+  numberList = [];\par
+  numberList.push(numberfiedString);\\\par
+//////\par
+2/4/23:\par
+GOAL:Remove setExpression List and the number list  \tab emptier from beneath the number press logic, because it every number bigger than one keypress never reaches numberlist as it is.\par
+--------\par
++ When setNumberList(param) receives a button \tab press it pushes the param into the numberlist\par
++ That number list is sent to a joinString function\par
+\tab which joins all numbers into one. \par
++ Since ParseString does one thing, I will have it return a value then, and define numberfiedString in setNumberList. It makes more sense that way.\par
+\par
+--erase\par
+\fs24 numberList =[];\par
+numberList.push(numberfiedString);\fs40\par
+Lets start at numberfied string\par
+it is as big as it can get,\par
+it represents individual keypress of numbers,\par
+the setnumber function was called everytime,\par
+numberfied string was a different value every time. \par
+numberfied string can get sent to expression list\par
+before an operator key press or after a operator key press\par
++Added a new Number value, which is called reference_number\par
+we will reference against the numberfied string, \par
+because on number press or equal press, we should probably check reference number against numberfied string and then add it in as an expression, then empty \par
+numberlist \par
+wait, first see if we can just add our nefarious two under those conditions--interesting, the values do get pushed into expression list in the right order, but the following conditions are supplanted:\par
+If button pressed is a number not =\par
+if button pressed is =\par
+Changed the logic a bit, now an if/else if/with our set ExpressionList() function and the eraser living over branching logic for the number press and the equals press\par
+\par
+// let displayEl = document.getElementsByClassName("ClcDisplay");\par
+let joinedString = new String();\par
+let numberfiedString = new Number();\par
+let reference_number = new Number();\par
+let mathematicalSymbol = new String();\par
+let expressionValue = new Number();\par
+\par
+let displayList = new Array();\par
+let numberList = new Array();\par
+let expressionList = new Array();\par
+\par
+let buttons = document.querySelectorAll("button");\par
+console.log(buttons);\par
+let CalculatorEffects = buttons.forEach((button) =>\par
+  button.addEventListener("click", () => \{\par
+    let buttonPressed = button.textContent;\par
+    console.log(`You clicked: $\{buttonPressed\}`);\par
+    setDisplayList(buttonPressed);\par
+    document.body.firstElementChild.innerText = joinString(displayList);\par
+    //--------------------------------do-not-code-above-here-----------------------------//\par
+    if (!isNaN(buttonPressed)) \{\par
+      setNumberList(buttonPressed);\par
+      // setExpressionList(numberfiedString); //too early\par
+      // numberList = [];\par
+    \} else if (isNaN(buttonPressed) || buttonPressed != "=") \{\par
+      setExpressionList(numberfiedString); //too early\par
+      numberList = [];\par
+      if (isNaN(buttonPressed) && buttonPressed != "=") \{\par
+        setSymbol(buttonPressed);\par
+      \} else \{\par
+        displayListEraser();\par
+        calculatorControlFunction(expressionList);\par
+      \}\par
+    \}\par
+    // \{\par
+    //   setExpressionList(numberfiedString); //too early\par
+    //   numberList = [];\par
+    // \} else if (isNaN(buttonPressed) && buttonPressed != "=") \{\par
+    //   setSymbol(buttonPressed);\par
+    // \} else \{\par
+    //   displayListEraser();\par
+    //   calculatorControlFunction(expressionList);\par
+    // \}\par
+  \})\par
+);\par
+\par
+//-------------------------------basic--functionality---------------------------------//\par
+function setDisplayList(parrPressed) \{\par
+  displayList.push(parrPressed);\par
+\}\par
+\par
+function setExpressionList(paramAny) \{\par
+  expressionList.push(paramAny); //send param to expression array\par
+  return expressionList;\par
+\}\par
+\par
+function setSymbol(paramSym) \{\par
+  mathematicalSymbol = paramSym; //the Symbol is captured,\par
+  setExpressionList(mathematicalSymbol);\par
+\}\par
+\par
+function joinString(stringPar) \{\par
+  return stringPar.join(""); //a joined integer\par
+\}\par
+function parseString(stringPar) \{\par
+  return parseInt(stringPar);\par
+\}\par
+\par
+//complex functions\par
+\par
+function saveRestOfexpressionList(arrParr) \{\par
+  localArr = arrParr.slice(0, arrParr.length);\par
+\}\par
+\par
+function setNumberList(param) \{\par
+  numberList.push(param); //send to numberList\par
+  joinedString = joinString(numberList); //join numberlist\par
+  numberfiedString = parseString(joinedString); //numberfied string\par
+  reference_number = numberfiedString;\par
+\}\par
+\par
+function calculatorControlFunction(arrPar) \{\par
+  while (arrPar.length > 1) \{\par
+    let firstNumber = arrPar.shift();\par
+    let localSymbol = arrPar.shift();\par
+    let secondNumber = arrPar.shift();\par
+    saveRestOfexpressionList(arrPar);\par
+\par
+    if (localSymbol === "+") \{\par
+      expressionValue = SetAdd(firstNumber, secondNumber);\par
+      arrPar.unshift(expressionValue);\par
+      // return SetAdd(firstNumber, secondNumber);\par
+    \} else if (localSymbol === "-") \{\par
+      expressionValue = SetSub(firstNumber, secondNumber);\par
+      arrPar.unshift(expressionValue);\par
+      // return SetAdd(firstNumber, secondNumber);\par
+    \} else if (localSymbol === "*") \{\par
+      expressionValue = SetMult(firstNumber, secondNumber);\par
+      arrPar.unshift(expressionValue);\par
+      // return SetAdd(firstNumber, secondNumber);\par
+    \} else if (localSymbol === "/") \{\par
+      expressionValue = SetDiv(firstNumber, secondNumber);\par
+      arrPar.unshift(expressionValue);\par
+      // return SetAdd(firstNumber, secondNumber);\par
+    \}\par
+  \}\par
+  return expressionValue;\par
+\}\par
+\par
+//erasers\par
+function displayListEraser() \{\par
+  displayList = [];\par
+  document.body.firstElementChild.innerText = displayList;\par
+\}\par
+\par
+function numberListEraser() \{\par
+  numberList = [];\par
+\}\par
+\par
+function expressionListEraser() \{\par
+  expressionList = [];\par
+\}\par
+\par
+//ez operation functions\par
+function SetAdd(a, b) \{\par
+  let c = 0;\par
+  c = a + b;\par
+  expressionValue = c;\par
+  document.body.firstElementChild.innerText = c;\par
+  console.log(c);\par
+\par
+  return c;\par
+\}\par
+function SetSub(a, b) \{\par
+  let c = 0;\par
+  c = a - b;\par
+  expressionValue = c;\par
+  document.body.firstElementChild.innerText = c;\par
+  console.log(c);\par
+  return c;\par
+\}\par
+function SetMult(a, b) \{\par
+  let c = 0;\par
+  c = a * b;\par
+  expressionValue = c;\par
+  document.body.firstElementChild.innerText = c;\par
+  console.log(c);\par
+  return c;\par
+\}\par
+\par
+function SetDiv(a, b) \{\par
+  let c = 0;\par
+  c = a / b;\par
+  expressionValue = c;\par
+  document.body.firstElementChild.innerText = c;\par
+  console.log(c);\par
+  return c;\par
+\}\par
+}
+ 

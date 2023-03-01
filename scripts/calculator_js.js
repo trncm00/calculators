@@ -1,4 +1,3 @@
-// let displayEl = document.getElementsByClassName("ClcDisplay");
 let joinedString = new String();
 let numberfiedString = new Number();
 let reference_number = new Number();
@@ -14,16 +13,15 @@ console.log(buttons);
 let CalculatorEffects = buttons.forEach((button) =>
   button.addEventListener("click", () => {
     let buttonPressed = button.textContent;
-    console.log(`You clicked: ${buttonPressed}`);
     setDisplayList(buttonPressed);
     document.body.firstElementChild.innerText = joinString(displayList);
     //--------------------------------do-not-code-above-here-----------------------------//
     if (!isNaN(buttonPressed)) {
       setNumberList(buttonPressed);
-      // setExpressionList(numberfiedString); //too early
-      // numberList = [];
+    } else if (buttonPressed === "&lt") {
+      backspaceDisplay();
     } else if (isNaN(buttonPressed) || buttonPressed != "=") {
-      setExpressionList(numberfiedString); //too early
+      setExpressionList(numberfiedString);
       numberList = [];
       if (isNaN(buttonPressed) && buttonPressed != "=") {
         setSymbol(buttonPressed);
@@ -32,15 +30,6 @@ let CalculatorEffects = buttons.forEach((button) =>
         calculatorControlFunction(expressionList);
       }
     }
-    // {
-    //   setExpressionList(numberfiedString); //too early
-    //   numberList = [];
-    // } else if (isNaN(buttonPressed) && buttonPressed != "=") {
-    //   setSymbol(buttonPressed);
-    // } else {
-    //   displayListEraser();
-    //   calculatorControlFunction(expressionList);
-    // }
   })
 );
 
@@ -64,6 +53,19 @@ function joinString(stringPar) {
 }
 function parseString(stringPar) {
   return parseInt(stringPar);
+}
+
+//backspace functions
+
+function backspaceDisplay() {
+  displayList.pop();
+  document.body.firstElementChild.innerText = joinString(displayList);
+}
+
+function backspaceNumList() {
+  numberList.pop();
+  joinedString = joinString(numberList);
+  numberfiedString = parseString(joinedString);
 }
 
 //complex functions
