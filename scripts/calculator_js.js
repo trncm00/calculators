@@ -13,14 +13,20 @@ console.log(buttons);
 let CalculatorEffects = buttons.forEach((button) =>
   button.addEventListener("click", () => {
     let buttonPressed = button.textContent;
-    setDisplayList(buttonPressed);
+    buttonPressed != "<" ? setDisplayList(buttonPressed) : backspaceFunction();
+    // setDisplayList(buttonPressed);
     document.body.firstElementChild.innerText = joinString(displayList);
     //--------------------------------do-not-code-above-here-----------------------------//
     if (!isNaN(buttonPressed)) {
       setNumberList(buttonPressed);
-    } else if (buttonPressed === "&lt") {
-      backspaceDisplay();
-    } else if (isNaN(buttonPressed) || buttonPressed != "=") {
+      console.log(`You pressed the ${buttonPressed} key`);
+    }
+    //  else if (buttonPressed === "<") {
+    //   console.log(`You pressed the ${buttonPressed} key`);
+    //   backspaceDisplay();
+    //   backspaceNumList();
+    // }
+    else if (isNaN(buttonPressed) || buttonPressed != "=") {
       setExpressionList(numberfiedString);
       numberList = [];
       if (isNaN(buttonPressed) && buttonPressed != "=") {
@@ -55,7 +61,11 @@ function parseString(stringPar) {
   return parseInt(stringPar);
 }
 
-//backspace functions
+//-------------------------------backspace--functionality---------------------------------//
+
+function backspaceFunction() {
+  console.log(`You pressed the < key`);
+}
 
 function backspaceDisplay() {
   displayList.pop();
@@ -101,6 +111,10 @@ function calculatorControlFunction(arrPar) {
       arrPar.unshift(expressionValue);
       // return SetAdd(firstNumber, secondNumber);
     } else if (localSymbol === "/") {
+      expressionValue = SetDiv(firstNumber, secondNumber);
+      arrPar.unshift(expressionValue);
+      // return SetAdd(firstNumber, secondNumber);
+    } else if (localSymbol === "<") {
       expressionValue = SetDiv(firstNumber, secondNumber);
       arrPar.unshift(expressionValue);
       // return SetAdd(firstNumber, secondNumber);
